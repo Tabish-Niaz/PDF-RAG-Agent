@@ -529,12 +529,28 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Streamlit ke default Header (Fork/GitHub) aur Footer ko hide karne ka CSS
+# # Streamlit ke default Header (Fork/GitHub) aur Footer ko hide karne ka CSS
+# hide_st_style = """
+#             <style>
+#             #MainMenu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
+# st.markdown(hide_st_style, unsafe_allow_html=True)
+
 hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
-            header {visibility: hidden;}
+            
+            /* Sirf top-right deploy/share buttons aur toolbar ko hide karein */
+            header[data-testid="stHeader"] {
+                background: transparent !important;
+            }
+            .stToolbar {
+                display: none !important;
+            }
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
